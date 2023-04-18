@@ -33,6 +33,8 @@ export default function Home() {
       </Head>
       <header>
         <nav className={styles.nav}>
+          <Link href="/api/auth/login">Log in</Link>
+          <Link href="/api/auth/logout">Log out</Link>
           <Link href="/private">Go to private page</Link>
         </nav>
       </header>
