@@ -18,6 +18,7 @@ export default function Home() {
       setPublicResponse(p.message);
 
       const pr = await callPrivate();
+      console.log(pr);
       setPrivateResponse(pr.message);
 
       const rb = await callRBAC();
