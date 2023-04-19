@@ -17,6 +17,7 @@ export default function Home() {
       <main className={styles.main}>
         <div className={styles.description}>
           <h1>Private Page</h1>
+          <Link href="/">Go to back home page</Link>
         </div>
       </main>
     </>
