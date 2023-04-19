@@ -2,7 +2,7 @@ import Head from 'next/head'
 import styles from '@/styles/Home.module.css'
 import { withPageAuthRequired } from '@auth0/nextjs-auth0'
 
-export default function Home() {
+export default function Private() {
   return (
     <>
       <Head>
