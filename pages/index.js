@@ -6,8 +6,11 @@ import { useUser } from "@auth0/nextjs-auth0/client";
 
 import { callPrivate, callPublic, callRBAC } from "../utils/api";
 
+const API_IDENTIFIER = "http://auth0-training-app-api/rbac/user_authorization"
+
 export default function Home() {
   const { isLoading, error, user } = useUser();
+  const willWork = user && user[API_IDENTIFIER] && user[API_IDENTIFIER].permissions?.includes?.("access:the:special")
   const [publicResponse, setPublicResponse] = useState(null);
   const [privateResponse, setPrivateResponse] = useState(null);
   const [RBACResponse, setRBACResponse] = useState(null);
@@ -47,14 +50,22 @@ export default function Home() {
           <h1 className={styles.heading}>Homepage</h1>
           <p>Public API Response: {publicResponse}</p>
           <p>Private API Response: {privateResponse}</p>
-          <p>RBAC API Response: {RBACResponse}</p>
+          <p>
+            RBAC API Response (
+            {willWork
+              ? "Should work"
+              : "Will fail"}
+            ): {RBACResponse}
+          </p>
         </section>
         <section className={styles.description}>
           {isLoading && <p>Loading</p>}
           {error && <p>{error.message}</p>}
           {user && (
             <div>
-              <code><pre>{JSON.stringify(user, null, '\t')}</pre></code>
+              <code>
+                <pre>{JSON.stringify(user, null, "\t")}</pre>
+              </code>
             </div>
           )}
         </section>
