@@ -43,6 +43,7 @@ export default function Home() {
           <Link href="/api/auth/logout">Log out</Link>
           <Link href="/private">Go to private page</Link>
           <Link href="/profile">Profile</Link>
+          <Link href="/cars">Cars</Link>
         </nav>
       </header>
       <main className={styles.main}>
