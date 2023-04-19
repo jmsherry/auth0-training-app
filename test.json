@@ -1,0 +1,67 @@
+{
+  "http://localhost:3000/admin": false,
+  "http://localhost:5000/admin": false,
+  "https://portfolio-fs-app.herokuapp.com/admin": false,
+  "http://localhost:3000/roles": ["Admin"],
+  "http://localhost:5000/roles": ["Admin"],
+  "https://portfolio-fs-app.herokuapp.com/roles": ["Admin"],
+  "http://localhost:3000/user_authorization": {
+    "permissions": [
+      "create:orders",
+      "create:orders:own",
+      "create:products",
+      "delete:orders",
+      "delete:orders:own",
+      "delete:products",
+      "read:orders",
+      "read:orders:own",
+      "read:products",
+      "update:orders",
+      "update:orders:own",
+      "update:products"
+    ]
+  },
+  "http://localhost:5000/user_authorization": {
+    "permissions": [
+      "create:orders",
+      "create:orders:own",
+      "create:products",
+      "delete:orders",
+      "delete:orders:own",
+      "delete:products",
+      "read:orders",
+      "read:orders:own",
+      "read:products",
+      "update:orders",
+      "update:orders:own",
+      "update:products"
+    ]
+  },
+  "https://portfolio-fs-app.herokuapp.com/user_authorization": {
+    "permissions": [
+      "create:orders",
+      "create:orders:own",
+      "create:products",
+      "delete:orders",
+      "delete:orders:own",
+      "delete:products",
+      "read:orders",
+      "read:orders:own",
+      "read:products",
+      "update:orders",
+      "update:orders:own",
+      "update:products"
+    ]
+  },
+  "given_name": "James",
+  "family_name": "Sherry",
+  "nickname": "james.sherry",
+  "name": "James Sherry",
+  "picture": "https://lh3.googleusercontent.com/a/AGNmyxZk8EoxjT3oZMxJ_wF6fnbsYOIvrQGJxMPDgDjJ=s96-c",
+  "locale": "en-GB",
+  "updated_at": "2023-04-18T23:57:09.879Z",
+  "email": "james.sherry@thejump.tech",
+  "email_verified": true,
+  "sub": "google-oauth2|113477821073759809880",
+  "sid": "SmaPg1KcHPtL9PccVv4mvZMRZskUMGDo"
+}
