@@ -7,8 +7,6 @@ import styles from "@/styles/Home.module.css";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import CarsList from "@/components/CarsList";
 
-const API_IDENTIFIER = "http://auth0-training-app-api/rbac/user_authorization";
-
 export default function CarsListPage({ serverData = [] }) {
   const { isLoading, error, user } = useUser();
 
@@ -16,30 +14,27 @@ export default function CarsListPage({ serverData = [] }) {
   const [carsError, setCarsError] = useState([]);
   const [cars, setCars] = useState(serverData);
 
-  const removeCar = useCallback(
-    async (id) => {
-      try {
-        if (!user) throw new Error("You need to be logged in");
-        const response = await fetch(`/api/v1/cars/${id}`, {
-          method: "DELETE",
-        });
-        if (!response.ok) throw response;
-        console.log("deleted");
-        const idx = cars.findIndex((car) => car._id === id);
-        setCars([...cars.slice(0, idx), ...cars.slice(idx + 1)]);
-      } catch (err) {
-        console.log(err);
-        alert(err.message);
-      }
-    },
-    [cars, setCars]
-  );
+  const removeCar = useCallback(async (id) => {
+    try {
+      if (!user) throw new Error("You need to be logged in");
+      const response = await fetch(`/api/v1/cars/${id}`, {
+        method: "DELETE",
+      });
+      if (!response.ok) throw response;
+      console.log("deleted");
+      const idx = cars.findIndex((car) => car._id === id);
+      setCars([...cars.slice(0, idx), ...cars.slice(idx + 1)]);
+    } catch (err) {
+      console.log(err);
+      alert(err.message);
+    }
+  }, [cars, setCars]);
 
   useEffect(() => {
     (async () => {
       try {
         if (!user) throw new Error("You need to be logged in");
-        const response = await fetch("/api/v1/cars");
+        const response = await fetch("/api/v1/admin/cars");
         if (!response.ok) throw response;
         const data = await response.json();
         console.log(data);
@@ -52,19 +47,6 @@ export default function CarsListPage({ serverData = [] }) {
       }
     })();
   }, []);
-
-  let isAdmin = false;
-
-  if(user) {
-    const apiRegistration = user[API_IDENTIFIER];
-    isAdmin =
-    apiRegistration &&
-    apiRegistration.permissions && 
-    apiRegistration.permissions.includes("access:the:special");
-  }
-  
-
-
 
   return (
     <>
@@ -81,8 +63,6 @@ export default function CarsListPage({ serverData = [] }) {
           ) : (
             <Link href="/api/auth/login">Log in</Link>
           )}
-
-          {isAdmin ? <Link href="/admin/cars/">Admin Page</Link> : null}
 
           <Link href="/private">Go to private page</Link>
           <Link href="/profile">Profile</Link>
@@ -121,7 +101,7 @@ export default function CarsListPage({ serverData = [] }) {
 /****************************************************************
  * Static Site Generation
  ****************************************************************/
-import { getCars } from "../../lib/cars/queries";
+import { getCars } from "@/lib/cars/queries";
 import { Alert } from "@mui/material";
 
 // This function gets called at build time on server-side.
