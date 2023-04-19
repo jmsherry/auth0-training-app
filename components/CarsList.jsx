@@ -35,7 +35,7 @@ function CarsList({ cars = [], deleteHandler = () => {} }) {
           {/* <Link aria-label="update" to={`/update/${_id}`}>
             Update
           </Link> */}
-          <IconButton aria-label="delete" onClick={() => deleteHandler(_id)}>
+          <IconButton aria-label="delete" onClick={() => deleteHandler(_id)} color="primary" >
             <DeleteIcon />
           </IconButton>
         </ListItem>

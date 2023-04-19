@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -14,10 +14,26 @@ export default function CarsListPage({ serverData = [] }) {
   const [carsError, setCarsError] = useState([]);
   const [cars, setCars] = useState(serverData);
 
+  const removeCar = useCallback(async (id) => {
+    try {
+      if (!user) throw new Error("You need to be logged in");
+      const response = await fetch(`/api/v1/cars/${id}`, {
+        method: "DELETE",
+      });
+      if (!response.ok) throw response;
+      console.log("deleted");
+      const idx = cars.findIndex((car) => car._id === id);
+      setCars([...cars.slice(0, idx), ...cars.slice(idx + 1)]);
+    } catch (err) {
+      console.log(err);
+      alert(err.message);
+    }
+  });
+
   useEffect(() => {
     (async () => {
       try {
-        if(!user) throw new Error('You need to be logged in');
+        if (!user) throw new Error("You need to be logged in");
         const response = await fetch("/api/v1/cars");
         if (!response.ok) throw response;
         const data = await response.json();
@@ -61,9 +77,20 @@ export default function CarsListPage({ serverData = [] }) {
             <Alert severity="error">{carsError.message}</Alert>
           )}
           {!isLoadingCars && !carsError && user && cars && cars.length ? (
-            <CarsList cars={cars} />
+            <CarsList cars={cars} deleteHandler={removeCar} />
           ) : (
             <p>No cars to display</p>
+          )}
+        </section>
+        <section className={styles.description}>
+          {isLoading && <p>Loading</p>}
+          {error && <p>{error.message}</p>}
+          {user && (
+            <div>
+              <code>
+                <pre>{JSON.stringify(user, null, "\t")}</pre>
+              </code>
+            </div>
           )}
         </section>
       </main>
