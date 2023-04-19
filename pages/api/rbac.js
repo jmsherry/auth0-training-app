@@ -6,22 +6,16 @@ import {
   getAccessToken,
 } from "@auth0/nextjs-auth0";
 
+const API_IDENTIFIER = "http://auth0-training-app-api/rbac/user_authorization"
+
 const handler = async (req, res) => {
   try {
     const session = await getSession(req, res);
-    const token = await getAccessToken(req, res);
     const user = session.user;
-    const apiRecord =  user[
-      "https://portfolio-fs-app.herokuapp.com/user_authorization"
-    ]
-    const apiPerms = apiRecord.permissions;
-    // console.log("session", session);
-    // console.log("token", token);
-    console.log(apiPerms);
-    console.log("user", apiPerms.includes("access:the:special"));
+
     if (
       !user[
-        "http://auth0-training-app-api/rbac/user_authorization"
+        API_IDENTIFIER
       ]?.permissions?.includes?.("access:the:special")
     ) {
       return res.status(401).json({ message: `You ain't got the skilzz` });
