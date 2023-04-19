@@ -39,6 +39,7 @@ export default function Home() {
           <Link href="/api/auth/login">Log in</Link>
           <Link href="/api/auth/logout">Log out</Link>
           <Link href="/private">Go to private page</Link>
+          <Link href="/profile">Profile</Link>
         </nav>
       </header>
       <main className={styles.main}>
