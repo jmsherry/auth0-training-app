@@ -5,7 +5,7 @@ export const callPublic = async () => {
     const data = await response.json();
     return data;
   } catch (err) {
-    return err;
+    return { message: err.message || err.statusText };
   }
 };
 
@@ -20,7 +20,7 @@ export const callPrivate = async () => {
     const data = await response.json();
     return data;
   } catch (err) {
-    return err;
+    return { message: err.message || err.statusText };
   }
 };
 
@@ -35,6 +35,6 @@ export const callRBAC = async () => {
     const data = await response.json();
     return data;
   } catch (err) {
-    return err;
+    return { message: err.message || err.statusText };
   }
 };
