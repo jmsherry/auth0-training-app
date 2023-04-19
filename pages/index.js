@@ -54,7 +54,7 @@ export default function Home() {
           {error && <p>{error.message}</p>}
           {user && (
             <div>
-              <code>{JSON.stringify(user)}</code>
+              <code><pre>{JSON.stringify(user, null, '\t')}</pre></code>
             </div>
           )}
         </section>
