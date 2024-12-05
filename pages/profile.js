@@ -39,7 +39,7 @@ export default function Home() {
                 />
               </div>
               <div className={styles["user-card-details"]}>
-                <dl>
+                <dl className={styles["user-card-list"]}>
                   <dt>Name</dt>
                   <dd>{user.name}</dd>
                   <dt>Email</dt>
@@ -49,6 +49,9 @@ export default function Home() {
                   <dt>ID (sub)</dt>
                   <dd>{user.sub}</dd>
                 </dl>
+              <pre>
+                <code>{JSON.stringify(user, null, "\t")}</code>
+              </pre>
               </div>
             </div>
           )}

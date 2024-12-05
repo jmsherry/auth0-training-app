@@ -110,7 +110,7 @@
 
 .center::before,
 .center::after {
-  content: '';
+  content: "";
   left: 50%;
   position: absolute;
   filter: blur(45px);
@@ -136,6 +136,14 @@
   .card:hover span {
     transform: none;
   }
+}
+
+.user-card-list {
+  margin-block-end: 1em;
+}
+
+.user-card-list dd {
+  padding-inline-start: 1em;
 }
 
 /* Mobile */
