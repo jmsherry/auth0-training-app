@@ -48,15 +48,6 @@ export default function Home() {
           <p>Private API Response: {privateResponse}</p>
           <p>RBAC API Response: {RBACResponse}</p>
         </section>
-        <section className={styles.description}>
-          {isLoading && <p>Loading</p>}
-          {error && <p>{error.message}</p>}
-          {user && (
-            <div>
-              <code><pre>{JSON.stringify(user, null, '\t')}</pre></code>
-            </div>
-          )}
-        </section>
       </main>
     </>
   );
