@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Link from 'next/link'
 import styles from '@/styles/Home.module.css'
 import { withPageAuthRequired } from '@auth0/nextjs-auth0'
 
