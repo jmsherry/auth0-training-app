@@ -57,10 +57,7 @@ export default function CarsListPage({ serverData = [] }) {
 
   if(user) {
     const apiRegistration = user[API_IDENTIFIER];
-    isAdmin =
-    apiRegistration &&
-    apiRegistration.permissions && 
-    apiRegistration.permissions.includes("access:the:special");
+    isAdmin = apiRegistration?.permissions?.includes?.("access:the:special");
   }
   
 
